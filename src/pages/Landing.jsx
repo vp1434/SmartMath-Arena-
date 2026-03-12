@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { FaGamepad, FaBrain, FaTrophy, FaChartBar, FaUsers, FaBolt, FaStar, FaRocket, FaFire, FaGlobe, FaEnvelope, FaDiscord, FaMobileAlt, FaHeart } from 'react-icons/fa'
+import { FaGamepad, FaBrain, FaTrophy, FaChartBar, FaUsers, FaBolt, FaStar, FaRocket, FaFire, FaGlobe, FaEnvelope, FaDiscord, FaMobileAlt, FaHeart, FaCode, FaPython, FaLaptopCode, FaJs } from 'react-icons/fa'
+import { SiCplusplus } from 'react-icons/si'
 import { HiLightningBolt, HiAcademicCap } from 'react-icons/hi'
 
 const features = [
@@ -151,6 +152,9 @@ export default function Landing() {
             custom={0}
             className="text-center mb-14"
           >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card-light mb-4 text-xs font-bold text-arena-neon uppercase tracking-widest">
+              <FaCode /> Feature Packed
+            </div>
             <h2 className="font-outfit font-black text-3xl sm:text-4xl md:text-5xl text-white mb-4">
               Everything You Need to{' '}
               <span className="gradient-text">Engage</span>
@@ -182,6 +186,77 @@ export default function Landing() {
                   {f.title}
                 </h3>
                 <p className="text-gray-400 leading-relaxed">{f.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Learn Coding Section */}
+      <section className="py-20 px-4 relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-arena-neon/5 rounded-full blur-[120px]" />
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="text-center mb-14"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card-light mb-4 text-xs font-bold text-yellow-400 uppercase tracking-widest">
+              <FaLaptopCode /> New Release
+            </div>
+            <h2 className="font-outfit font-black text-3xl sm:text-4xl md:text-5xl text-white mb-4">
+              Master <span className="text-yellow-400">Coding</span> Concepts
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Learn the world's most popular programming languages with our interactive tutorials.
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              { to: '/learn-python', name: 'Python', icon: <FaPython />, color: '#fbbf24', desc: 'Data Science, AI & Automation' },
+              { to: '/learn-cpp', name: 'C++', icon: <SiCplusplus />, color: '#3b82f6', desc: 'Game Engines & High Performance' },
+              { to: '/learn-js', name: 'JavaScript', icon: <FaJs />, color: '#f0db4f', desc: 'Web Development & Interactivity' }
+            ].map((lang, i) => (
+              <motion.div
+                key={lang.name}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                whileHover={{ y: -8 }}
+                className="glass-card p-8 group flex flex-col items-center text-center relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                   <div className="text-8xl transform rotate-12">{lang.icon}</div>
+                </div>
+                
+                <div 
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-inner"
+                  style={{ background: `${lang.color}15`, color: lang.color, border: `1px solid ${lang.color}30` }}
+                >
+                  {lang.icon}
+                </div>
+                
+                <h3 className="font-outfit font-black text-2xl text-white mb-3">
+                  {lang.name}
+                </h3>
+                <p className="text-gray-500 text-sm mb-8">
+                  {lang.desc}
+                </p>
+                
+                <Link 
+                  to={lang.to} 
+                  className="w-full py-3 rounded-xl font-bold text-sm transition-all duration-300"
+                  style={{ background: `${lang.color}20`, color: lang.color, border: `1px solid ${lang.color}40` }}
+                >
+                  Start Learning
+                </Link>
               </motion.div>
             ))}
           </div>
