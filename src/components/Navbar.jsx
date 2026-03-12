@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { HiMenu, HiX, HiChevronDown } from 'react-icons/hi'
-import { FaBrain, FaGamepad, FaTrophy, FaChartBar, FaFire, FaPython, FaBookOpen, FaJs } from 'react-icons/fa'
+import { FaBrain, FaGamepad, FaTrophy, FaChartBar, FaFire, FaPython, FaBookOpen, FaJs, FaDatabase, FaCode } from 'react-icons/fa'
 import { SiCplusplus } from 'react-icons/si'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -24,6 +24,8 @@ export default function Navbar() {
     { to: '/learn-python', label: 'Python', icon: <FaPython />, color: '#fbbf24' },
     { to: '/learn-cpp', label: 'C++', icon: <SiCplusplus />, color: '#3b82f6' },
     { to: '/learn-js', label: 'JavaScript', icon: <FaJs />, color: '#f0db4f' },
+    { to: '/learn-c', label: 'C Programming', icon: <FaCode />, color: '#3b82f6' },
+    { to: '/learn-dbms', label: 'DBMS', icon: <FaDatabase />, color: '#0ea5e9' },
   ]
 
   const isActive = (path) => location.pathname === path

@@ -13,6 +13,8 @@ import TugOfWar from './pages/TugOfWar'
 import LearnPython from './pages/LearnPython'
 import LearnCPP from './pages/LearnCPP'
 import LearnJS from './pages/LearnJS'
+import LearnC from './pages/LearnC'
+import LearnDBMS from './pages/LearnDBMS'
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
             <Route path="/learn-python" element={<LearnPython />} />
             <Route path="/learn-cpp" element={<LearnCPP />} />
             <Route path="/learn-js" element={<LearnJS />} />
+            <Route path="/learn-c" element={<LearnC />} />
+            <Route path="/learn-dbms" element={<LearnDBMS />} />
           </Routes>
         </main>
         <AdBanner />
