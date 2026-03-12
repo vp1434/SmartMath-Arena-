@@ -22,7 +22,7 @@ export default function TeamPanel({ team, question, answer, onKeyPress, onSubmit
       initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="flex flex-col items-center h-full p-3 sm:p-4 md:p-6 rounded-2xl relative overflow-hidden"
+      className="flex flex-col items-center h-full p-2.5 sm:p-4 md:p-6 rounded-2xl relative overflow-hidden"
       style={{
         background: teamBg,
         border: `1px solid ${teamBorder}`,
@@ -34,7 +34,7 @@ export default function TeamPanel({ team, question, answer, onKeyPress, onSubmit
 
       {/* Team Name */}
       <motion.h2
-        className={`font-outfit font-black text-xl sm:text-2xl md:text-3xl mb-3 sm:mb-4 bg-gradient-to-r ${teamGradient} bg-clip-text text-transparent`}
+        className={`font-outfit font-black text-lg sm:text-2xl md:text-3xl mb-2 sm:mb-4 bg-gradient-to-r ${teamGradient} bg-clip-text text-transparent`}
       >
         {team.name}
       </motion.h2>
@@ -44,30 +44,30 @@ export default function TeamPanel({ team, question, answer, onKeyPress, onSubmit
         key={team.score}
         initial={{ scale: 1.3 }}
         animate={{ scale: 1 }}
-        className="mb-3 sm:mb-4"
+        className="mb-2 sm:mb-4"
       >
-        <span className="font-outfit font-black text-3xl sm:text-4xl md:text-5xl" style={{ color: teamColor }}>
+        <span className="font-outfit font-black text-2xl sm:text-4xl md:text-5xl" style={{ color: teamColor }}>
           {team.score}
         </span>
-        <span className="text-gray-500 text-xs sm:text-sm ml-2">pts</span>
+        <span className="text-gray-500 text-[10px] sm:text-sm ml-1.5">pts</span>
       </motion.div>
 
       {/* Question Box */}
       <div
-        className="w-full rounded-xl p-3 sm:p-4 mb-3 sm:mb-4 text-center"
+        className="w-full rounded-xl p-2 sm:p-4 mb-2 sm:mb-4 text-center"
         style={{
           background: 'rgba(17, 24, 39, 0.6)',
           border: `1px solid ${teamBorder}`,
         }}
       >
-        <span className="text-xs text-gray-500 block mb-1">Question</span>
+        <span className="text-[10px] text-gray-500 block">Question</span>
         <AnimatePresence mode="wait">
           <motion.div
             key={question?.question}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="font-outfit font-bold text-xl sm:text-2xl md:text-3xl text-white"
+            className="font-outfit font-bold text-lg sm:text-2xl md:text-3xl text-white"
           >
             {question?.question || '—'}
           </motion.div>
@@ -76,7 +76,7 @@ export default function TeamPanel({ team, question, answer, onKeyPress, onSubmit
 
       {/* Answer Display Box */}
       <div
-        className={`w-full rounded-xl p-3 sm:p-4 mb-3 sm:mb-4 text-center relative overflow-hidden transition-all duration-300 ${
+        className={`w-full rounded-xl p-2 sm:p-4 mb-2 sm:mb-4 text-center relative overflow-hidden transition-all duration-300 ${
           feedback === 'correct' ? 'ring-2 ring-green-500' :
           feedback === 'wrong' ? 'ring-2 ring-red-500 animate-shake' : ''
         }`}
@@ -91,8 +91,8 @@ export default function TeamPanel({ team, question, answer, onKeyPress, onSubmit
           }`,
         }}
       >
-        <span className="text-xs text-gray-500 block mb-1">Your Answer</span>
-        <div className="font-outfit font-black text-3xl sm:text-4xl md:text-5xl min-h-[2.5rem] sm:min-h-[3rem]" style={{ color: answer ? 'white' : 'rgba(100,116,139,0.3)' }}>
+        <span className="text-[10px] text-gray-500 block">Your Answer</span>
+        <div className="font-outfit font-black text-2xl sm:text-4xl md:text-5xl min-h-[2rem] sm:min-h-[3rem]" style={{ color: answer ? 'white' : 'rgba(100,116,139,0.3)' }}>
           {answer || '?'}
         </div>
 
@@ -122,7 +122,7 @@ export default function TeamPanel({ team, question, answer, onKeyPress, onSubmit
       </div>
 
       {/* Number Keypad */}
-      <div className="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mb-3 sm:mb-4">
+      <div className="grid grid-cols-3 gap-1 w-full mb-2 sm:mb-4">
         {keys.map((key, i) => (
           key !== null ? (
             <motion.button
@@ -131,7 +131,7 @@ export default function TeamPanel({ team, question, answer, onKeyPress, onSubmit
               whileTap={{ scale: 0.92 }}
               onClick={() => onKeyPress(key)}
               disabled={disabled}
-              className="py-2.5 sm:py-3 md:py-4 rounded-xl font-outfit font-bold text-lg sm:text-xl md:text-2xl transition-all duration-200 cursor-pointer"
+              className="py-2 sm:py-3 md:py-4 rounded-xl font-outfit font-bold text-base sm:text-xl md:text-2xl transition-all duration-200 cursor-pointer"
               style={{
                 background: 'rgba(17, 24, 39, 0.7)',
                 border: `1px solid ${teamBorder}`,

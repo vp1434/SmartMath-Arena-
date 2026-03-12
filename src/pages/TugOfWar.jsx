@@ -564,10 +564,10 @@ export default function TugOfWar() {
       </AnimatePresence>
 
       {/* Main 3-column layout */}
-      <div className="flex-1 flex flex-col lg:flex-row gap-2 sm:gap-3 p-2 sm:p-3 md:p-4 max-w-[1600px] mx-auto w-full">
+      <div className="flex-1 flex flex-col lg:flex-row gap-2 sm:gap-3 p-2 sm:p-3 md:p-4 max-w-[1600px] mx-auto w-full lg:overflow-hidden">
 
         {/* ===== LEFT: Team 1 ===== */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 order-2 lg:order-1">
           <TeamPanel
             team={team1}
             question={q1}
@@ -582,18 +582,21 @@ export default function TugOfWar() {
         </div>
 
         {/* ===== CENTER: Arena ===== */}
-        <div className="lg:w-72 xl:w-80 flex lg:flex-col items-center justify-center gap-3 sm:gap-4 py-2 lg:py-4 order-first lg:order-none">
+        <div className="lg:w-72 xl:w-80 flex lg:flex-col items-center justify-center gap-2 sm:gap-4 py-1 sm:py-2 lg:py-4 order-1 lg:order-2">
+          
+          {/* Round & Timer Row on mobile */}
+          <div className="flex lg:flex-col items-center gap-4 lg:gap-4 w-full justify-center">
           
           {/* Round */}
-          <div className="glass-card-light px-3 py-1.5 sm:px-4 sm:py-2 text-center">
-            <span className="text-xs text-gray-500">Round</span>
-            <div className="font-outfit font-black text-lg sm:text-xl text-white">
+          <div className="glass-card-light px-3 py-1 sm:px-4 sm:py-2 text-center">
+            <span className="text-[10px] sm:text-xs text-gray-500">Round</span>
+            <div className="font-outfit font-black text-base sm:text-xl text-white">
               {currentRound}<span className="text-gray-600">/{totalRounds}</span>
             </div>
           </div>
 
           {/* Timer */}
-          <div className="relative">
+          <div className="relative scale-75 sm:scale-100">
             <svg width="100" height="100" viewBox="0 0 100 100">
               <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(30,41,59,0.5)" strokeWidth="5" />
               <circle
@@ -611,9 +614,10 @@ export default function TugOfWar() {
               <span className="text-[10px] text-gray-500">sec</span>
             </div>
           </div>
+          </div>
 
           {/* ====== TUG OF WAR CHARACTER SCENE ====== */}
-          <div className="w-full relative overflow-hidden rounded-xl" style={{ background: 'rgba(17, 24, 39, 0.4)', minHeight: '180px' }}>
+          <div className="w-full relative overflow-hidden rounded-xl border border-white/5" style={{ background: 'rgba(17, 24, 39, 0.4)', minHeight: '140px' }}>
             
             {/* Center dashed line (stays fixed) */}
             <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] border-l-2 border-dashed border-gray-600/30 z-20" />
@@ -623,10 +627,10 @@ export default function TugOfWar() {
 
             {/* The entire scene shifts based on tugPosition */}
             <motion.div
-              className="relative flex items-end justify-center px-4 py-2"
+              className="relative flex items-end justify-center px-4 py-2 scale-[0.8] sm:scale-100"
               animate={{ x: tugPosition * 2.5 }}
               transition={{ type: 'spring', damping: 10, stiffness: 80 }}
-              style={{ minHeight: '170px' }}
+              style={{ minHeight: '130px' }}
             >
               {/* Team 1 Character (left side, pulls LEFT) */}
               <div className="relative">

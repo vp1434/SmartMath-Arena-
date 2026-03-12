@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [learnOpen, setLearnOpen] = useState(false)
+  const [mobileLearnOpen, setMobileLearnOpen] = useState(false)
   const location = useLocation()
   const dropdownRef = useRef(null)
 
@@ -167,27 +168,56 @@ export default function Navbar() {
               ))}
 
               {/* Mobile Learn Group */}
-              <div className="py-2">
-                <div className="px-4 py-2 text-xs font-bold text-gray-600 uppercase tracking-widest flex items-center gap-2">
-                   <FaBookOpen /> Learn
-                </div>
-                <div className="space-y-1 mt-1">
-                  {learnLinks.map(link => (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      onClick={() => setOpen(false)}
-                      className={`flex items-center gap-3 px-8 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                        isActive(link.to)
-                          ? 'bg-arena-neon/10 text-arena-neon'
-                          : 'text-gray-400 hover:text-white hover:bg-white/5'
-                      }`}
+              <div className="py-1">
+                <button
+                  onClick={() => setMobileLearnOpen(!mobileLearnOpen)}
+                  className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isLearnActive || mobileLearnOpen
+                      ? 'bg-arena-neon/5 text-arena-neon'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <FaBookOpen />
+                    <span>Learn</span>
+                  </div>
+                  <HiChevronDown 
+                    className={`transition-transform duration-300 ${mobileLearnOpen ? 'rotate-180' : ''}`} 
+                  />
+                </button>
+                
+                <AnimatePresence>
+                  {mobileLearnOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
                     >
-                      <span style={{ color: link.color }}>{link.icon}</span>
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
+                      <div className="space-y-1 mt-1 ml-4 border-l border-white/5">
+                        {learnLinks.map(link => (
+                          <Link
+                            key={link.to}
+                            to={link.to}
+                            onClick={() => {
+                              setOpen(false)
+                              setMobileLearnOpen(false)
+                            }}
+                            className={`flex items-center gap-3 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                              isActive(link.to)
+                                ? 'text-white bg-white/5'
+                                : 'text-gray-500 hover:text-white'
+                            }`}
+                          >
+                            <span style={{ color: link.color }}>{link.icon}</span>
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {links.slice(4).map(link => (
