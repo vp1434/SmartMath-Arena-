@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import AdBanner from './components/AdBanner'
 import MathBackground from './components/MathBackground'
 import ScrollToTop from './utils/ScrollToTop'
 import Landing from './pages/Landing'
@@ -33,6 +34,7 @@ function App() {
             <Route path="/learn-js" element={<LearnJS />} />
           </Routes>
         </main>
+        <AdBanner />
         <Footer />
       </div>
     </Router>
